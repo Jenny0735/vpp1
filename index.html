@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能虚拟电厂系统</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-bolt"></i>
+                <span>智能虚拟电厂系统</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href=" " class="nav-link active">首页</a >
+                </li>
+                <li class="nav-item">
+                    <a href="#monitoring" class="nav-link">故障监测</a >
+                </li>
+                <li class="nav-item">
+                    <a href="#recovery" class="nav-link">恢复方案</a >
+                </li>
+                <li class="nav-item">
+                    <a href="#statistics" class="nav-link">数据统计</a >
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="openSettings()">系统设置</a >
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容区域 -->
+    <main class="main-content">
+        <!-- 系统概览区域 -->
+        <section id="overview" class="section">
+            <div class="container">
+                <h2 class="section-title">系统概览</h2>
+                <div class="overview-grid">
+                    <div class="data-card">
+                        <div class="card-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>总负荷</h3>
+                            <p class="card-value" id="totalLoad">175 MW</p >
+                            <span class="card-status">正常</span>
+                        </div>
+                    </div>
+                    <div class="data-card">
+                        <div class="card-icon">
+                            <i class="fas fa-solar-panel"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>总发电量</h3>
+                            <p class="card-value" id="totalGeneration">180 MW</p >
+                            <span class="card-status">良好</span>
+                        </div>
+                    </div>
+                    <div class="data-card">
+                        <div class="card-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>供需平衡</h3>
+                            <p class="card-value" id="supplyBalance">+5 MW</p >
+                            <span class="card-status">盈余</span>
+                        </div>
+                    </div>
+                    <div class="data-card">
+                        <div class="card-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>系统效率</h3>
+                            <p class="card-value" id="systemEfficiency">95%</p >
+                            <span class="card-status">优秀</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="status-indicator">
+                    <span class="status-light green"></span>
+                    <span>系统运行正常</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 实时监控区域 -->
+        <section id="monitoring" class="section">
+            <div class="container">
+                <h2 class="section-title">实时监控</h2>
+                <div class="monitoring-container">
+                    <div class="view-controls">
+                        <button class="view-btn active" data-view="panorama">全景视图</button>
+                        <button class="view-btn" data-view="commercial">商圈视图</button>
+                        <button class="view-btn" data-view="residential">居民区视图</button>
+                        <button class="view-btn" data-view="industrial">工业区视图</button>
+                    </div>
+                    <div class="map-container">
+                        <div class="interactive-map" id="interactiveMap">
+                            <!-- 地图区域将通过JavaScript动态生成 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 智能调度区域 -->
+        <section id="dispatch" class="section">
+            <div class="container">
+                <h2 class="section-title">智能调度</h2>
+                <div class="dispatch-container">
+                    <div class="priority-system">
+                        <h3>优先级调度</h3>
+                        <div class="priority-cards">
+                            <div class="priority-card" data-priority="stability">
+                                <div class="card-header">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <h4>电网稳定</h4>
+                                </div>
+                                <p>确保电网运行稳定</p >
+                            </div>
+                            <div class="priority-card" data-priority="economy">
+                                <div class="card-header">
+                                    <i class="fas fa-coins"></i>
+                                    <h4>经济效益</h4>
+                                </div>
+                                <p>优化经济运行成本</p >
+                            </div>
+                            <div class="priority-card" data-priority="comfort">
+                                <div class="card-header">
+                                    <i class="fas fa-thermometer-half"></i>
+                                    <h4>用户舒适度</h4>
+                                </div>
+                                <p>提升用户体验</p >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="temperature-control">
+                        <h3>温度控制</h3>
+                        <div class="temp-control-panel">
+                            <div class="temp-display">
+                                <span id="currentTemp">22</span>°C
+                            </div>
+                            <div class="temp-slider-container">
+                                <input type="range" id="tempSlider" min="16" max="30" value="22">
+                                <div class="temp-labels">
+                                    <span>16°C</span>
+                                    <span>30°C</span>
+                                </div>
+                            </div>
+                            <div class="temp-buttons">
+                                <button class="temp-btn" onclick="adjustTemp(-1)">
+                                    <i class="fas fa-minus"></i> 降温
+                                </button>
+                                <button class="temp-btn" onclick="adjustTemp(1)">
+                                    <i class="fas fa-plus"></i> 升温
+                                </button>
+                            </div>
+                            <div class="mode-selector">
+                                <button class="mode-btn active" data-mode="auto">自动模式</button>
+                                <button class="mode-btn" data-mode="eco">节能模式</button>
+                                <button class="mode-btn" data-mode="comfort">舒适模式</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="priority-indicator">
+                        <h3>优先级指示器</h3>
+                        <div class="priority-levels">
+                            <div class="level" data-level="1">1</div>
+                            <div class="level" data-level="2">2</div>
+                            <div class="level" data-level="3">3</div>
+                            <div class="level" data-level="4">4</div>
+                            <div class="level active" data-level="5">5</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 数据分析区域 -->
+        <section id="statistics" class="section">
+            <div class="container">
+                <h2 class="section-title">数据分析</h2>
+                <div class="statistics-container">
+                    <div class="chart-container">
+                        <h3>24小时能源图表</h3>
+                        <canvas id="energyChart"></canvas>
+                    </div>
+                    <div class="stats-panel">
+                        <h3>数据统计</h3>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <span class="stat-label">峰值负荷</span>
+                                <span class="stat-value">210 MW</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">谷值负荷</span>
+                                <span class="stat-value">145 MW</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">平均效率</span>
+                                <span class="stat-value">94.5%</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">节能减排</span>
+                                <span class="stat-value">-15.2%</span>
+                            </di
